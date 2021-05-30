@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <title>Covid 19 API in Javascript</title>
+</head>
+<body>
+    <div class="container">
+    <h1 class="text-center mt-5">Covid 19 </h1>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Total Cases</th>
+            <th>Death</th>
+            <th>Reco vered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="data">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                    
+          </tr>
+          
+        </tbody>
+      </table>
+      <br>
+      <button onclick="refreshData();" class="btn btn-danger btn-block">Refresh</button>
+      </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+       function refreshData(){
+            clearData();
+            init();
+        }
+        function init(){
+
+            var url="https://api.covid19api.com/summary";
+            var data='';
+            $.get(url,function(data){
+                console.log(data.Global);
+                data=`
+                <td>${data.Global.TotalConfirmed}</td>
+                <td>${data.Global.TotalDeaths}</td>
+                <td>${data.Global.TotalRecovered}</td>
+
+
+                `
+              $("#data").html(data);vcf
+
+                // console.log(data.Country.NewConfirmed);
+                // console.log(data.Country.TotalConfirmed);
+                // console.log(data.Country.TotalDeath);
+                
+            })
+        }
+        
+        function clearData(){
+            $("#data").empty;
+          
+
+        }
+    
+</script>
+
+
+</html>
